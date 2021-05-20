@@ -9,17 +9,15 @@ void	*ft_memccpy	(void *dest, const void *src, int c, size_t n)
 	d = (char*)dest;
 	s = (char*)src;
 	len = 0;
-	while (n > len && *d != c)
+	while (n > len)
 	{
 		*d = *s;
+		if  (*d == c)
+			return (dest + len + 1);
 		d++;
 		s++;
 		len++;
 	}
-	if  (*d == c)
-	{
-		d++;
-		return (d);
-	}
+
 	return (0);
 }
