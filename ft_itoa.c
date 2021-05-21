@@ -1,11 +1,19 @@
-// #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lweibel <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/21 15:33:18 by lweibel           #+#    #+#             */
+/*   Updated: 2021/05/21 16:49:59 by lweibel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include "libft.h"
 
-int 	count(long n)
+int	count(long n)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (n < 0)
@@ -21,17 +29,18 @@ int 	count(long n)
 	return (i);
 }
 
-char 	*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	int count_nb;
-	int sign;
-	char *dest;
-	long num;
+	int		count_nb;
+	int		sign;
+	char	*dest;
+	long	num;
 
 	num = n;
 	count_nb = count(num);
 	sign = 0;
-	if (!(dest = (char *)malloc(sizeof(char) * count_nb + 1)))
+	dest = (char *)malloc(sizeof(char) * count_nb + 1);
+	if (!dest)
 		return (NULL);
 	if (num < 0)
 	{
@@ -43,9 +52,8 @@ char 	*ft_itoa(int n)
 	count_nb -= 1;
 	while (count_nb >= 0 + sign)
 	{
-		dest[count_nb] = num % 10 + '0';
+		dest[count_nb--] = num % 10 + '0';
 		num /= 10;
-		count_nb--;
 	}
 	return (dest);
 }

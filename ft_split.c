@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lweibel <lweibel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lweibel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 12:08:39 by lweibel           #+#    #+#             */
-/*   Updated: 2021/05/20 12:08:39 by lweibel          ###   ########.fr       */
+/*   Created: 2021/05/21 15:29:05 by lweibel           #+#    #+#             */
+/*   Updated: 2021/05/21 16:56:44 by lweibel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int		count_word(char const *s, char c)
+int	count_word(char const *s, char c)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	count = 0;
 	i = 0;
@@ -31,11 +30,11 @@ int		count_word(char const *s, char c)
 	return (count);
 }
 
-char		**count_letters(char **dest, char const *s, char c)
+char	**count_letters(char **dest, char const *s, char c)
 {
-	int i;
-	int count;
-	int index;
+	int	i;
+	int	count;
+	int	index;
 
 	i = 0;
 	index = 0;
@@ -47,7 +46,8 @@ char		**count_letters(char **dest, char const *s, char c)
 			count++;
 			i++;
 		}
-		if (!(dest[index] = malloc(sizeof(char) * count + 1)))
+		dest[index] = malloc(sizeof(char) * count + 1);
+		if (!dest)
 			return (0);
 		dest[index][count] = 0;
 		index++;
@@ -59,9 +59,9 @@ char		**count_letters(char **dest, char const *s, char c)
 
 char	**fill(char **dest, char const *s, char c)
 {
-	int count;
-	int i;
-	int index;
+	int	count;
+	int	i;
+	int	index;
 
 	i = 0;
 	index = 0;
@@ -83,16 +83,17 @@ char	**fill(char **dest, char const *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	int i;
-	int count;
-	char **dest;
+	int		i;
+	int		count;
+	char	**dest;
 
 	i = 0;
 	dest = NULL;
 	while (*s == c)
 		s++;
 	count = count_word(s, c);
-	if (!(dest = malloc(sizeof(char*) * count + 1)))
+	dest = malloc(sizeof(char *) * count + 1);
+	if (!dest)
 		return (0);
 	dest[count] = 0;
 	dest = count_letters(dest, s, c);
