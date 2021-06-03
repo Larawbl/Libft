@@ -4,7 +4,11 @@ void	ft_lstadd_back(t_list **alst, t_list *new)
 {
 	t_list *list;
 
-	list = *alst;
-	list = ft_lstlast(list);
-	list->next = new;
+	if (alst == NULL || *alst == NULL)
+		*alst = new;
+	else
+	{
+		list = ft_lstlast(*alst);
+		list->next = new;
+	}
 }
